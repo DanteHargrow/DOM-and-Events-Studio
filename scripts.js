@@ -9,11 +9,10 @@ function init(){
     let upButton = document.getElementById("up");
     let downButton = document.getElementById("down");
     let rocket = document.getElementById("rocket");
-    //rocket.style.position = absolute;
+    rocket.style.left = '0px'
+    rocket.style.position = 'absolute';
     rocket.style.bottom = '0px';
-    rocket.style.top = "0px";
-    let verticalLocation;
-    let horizontalLocation = null;
+   let movement = null;
 
 
     button.addEventListener('click',function(event){
@@ -37,30 +36,31 @@ function init(){
             document.getElementById("flightStatus").innerHTML = "Mission aborted.";
             document.getElementById("shuttleBackground").style.backgroundColor = "";
             document.getElementById("spaceShuttleHeight").innerHTML = "0";
-
         }
     });
 
     leftButton.addEventListener("click",function(){
-        horizontalLocation = parseFloat(rocket.style.left);
-        let leftMove = horizontalLocation - 10;
-        rocket.style.left =  leftMove + "px";
-        console.log('test')
+        movement = parseInt(rocket.style.left) - 10 + 'px';
+        rocket.style.left = movement;
     });
     rightButton.addEventListener("click",function(event){
-        rocket.style.right = "1000px";
-        document.getElementById("rocket").style.right = "100px"
+        movement = parseInt(rocket.style.left) + 10 + 'px';
+        rocket.style.left = movement;
+        
     })
     upButton.addEventListener("click",function(){
-
+        movement = parseInt(rocket.style.bottom) + 10 + 'px';
+        rocket.style.bottom = movement;
+        spaceShuttleHeight.innerHTML = parseInt(spaceShuttleHeight.innerHTML)+10000;
     });
     downButton.addEventListener("click",function(){
-        let move = parseInt(rocket.style.bottom) - 10 + 'px';
-        rocket.style.bottom = move;
+        movement = parseInt(rocket.style.bottom) - 10 + 'px';
+        rocket.style.bottom = movement;
+        spaceShuttleHeight.innerHTML = parseInt(spaceShuttleHeight.innerHTML)-10000;
 
     });
 
 
 }
 
-window.onload = init;
+window.onload = init
